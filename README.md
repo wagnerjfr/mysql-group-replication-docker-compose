@@ -52,7 +52,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 Execute the command below to configure the other nodes and join the to group:
 ```
 for N in 2 3
-do docker exec -it node$N mysql -uroot -pmypass \
+do docker-compose exec node$N mysql -uroot -pmypass \
   -e "change master to master_user='repl' for channel 'group_replication_recovery';" \
   -e "START GROUP_REPLICATION;"
 done
@@ -62,7 +62,7 @@ done
 Execute:
 ```
 for N in 1 2 3
-do docker exec -it node$N mysql -uroot -pmypass \
+do docker-compose exec node$N mysql -uroot -pmypass \
   -e "SHOW VARIABLES WHERE Variable_name = 'hostname';" \
   -e "SELECT * FROM performance_schema.replication_group_members;"
 done
