@@ -1,6 +1,10 @@
 # Seeting up MySQL Group replication with Docker Compose
 
-The below steps show how to setup MySQL Group Replication with [Docker Compose](https://docs.docker.com/compose/) using [mysql/mysql-server:8.0](https://hub.docker.com/r/mysql/mysql-server) Docker images.
+The below steps show how to setup [MySQL Group Replication](https://dev.mysql.com/doc/en/group-replication.html) with [Docker Compose](https://docs.docker.com/compose/) using [mysql/mysql-server:8.0](https://hub.docker.com/r/mysql/mysql-server) Docker images.
+
+Other ways to setup Group Replication using Docker containers:
+- https://github.com/wagnerjfr/mysql-group-replication-docker
+- https://github.com/wagnerjfr/mysql-group-replication-binaries-docker
 
 ## Step 1: Starting the containers
 After clonning the project, run the following command:
@@ -11,7 +15,7 @@ Wait for the State ```Up (healthy)``` in all 3 containers.
 ```
 docker-compose ps
 ```
-A similar iutput should appear:
+A similar output should appear:
 ```console
 Name               Command                  State                     Ports
 -----------------------------------------------------------------------------------------
