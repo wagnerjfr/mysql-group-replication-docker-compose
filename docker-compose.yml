@@ -1,0 +1,100 @@
+version: '3.5'
+
+services:
+
+  node1:
+    image: mysql/mysql-server:8.0
+    container_name: node1
+    hostname: node1
+    ports:
+      - "3307:3306"
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+    command: ["mysqld",
+      "--server-id=1",
+      "--log-bin=mysql-bin-1.log",
+      "--enforce-gtid-consistency=ON",
+      "--log-slave-updates=ON",
+      "--gtid-mode=ON",
+      "--transaction-write-set-extraction=XXHASH64",
+      "--binlog-checksum=NONE",
+      "--master-info-repository=TABLE",
+      "--relay-log-info-repository=TABLE",
+      "--plugin-load=group_replication.so",
+      "--relay-log-recovery=ON",
+      "--group-replication-start-on-boot=OFF",
+      "--group-replication-group-name=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "--group-replication-local-address=node1:6606",
+      "--group-replication-group-seeds=node1:6606,node2:6606,node3:6606",
+      "--loose-group-replication-single-primary-mode=ON",
+      "--loose-group-replication-enforce-update-everywhere-checks=OFF"]
+    healthcheck:
+      test: "mysqladmin ping -u root -p$${MYSQL_ROOT_PASSWORD}"
+      interval: 2s
+      retries: 20
+
+  node2:
+    image: mysql/mysql-server:8.0
+    container_name: node2
+    hostname: node2
+    ports:
+      - "3308:3306"
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+    command: ["mysqld",
+      "--server-id=1",
+      "--log-bin=mysql-bin-1.log",
+      "--enforce-gtid-consistency=ON",
+      "--log-slave-updates=ON",
+      "--gtid-mode=ON",
+      "--transaction-write-set-extraction=XXHASH64",
+      "--binlog-checksum=NONE",
+      "--master-info-repository=TABLE",
+      "--relay-log-info-repository=TABLE",
+      "--plugin-load=group_replication.so",
+      "--relay-log-recovery=ON",
+      "--group-replication-start-on-boot=OFF",
+      "--group-replication-group-name=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "--group-replication-local-address=node2:6606",
+      "--group-replication-group-seeds=node1:6606,node2:6606,node3:6606",
+      "--loose-group-replication-single-primary-mode=ON",
+      "--loose-group-replication-enforce-update-everywhere-checks=OFF"]
+    healthcheck:
+      test: "mysqladmin ping -u root -p$${MYSQL_ROOT_PASSWORD}"
+      interval: 2s
+      retries: 20
+
+  node3:
+    image: mysql/mysql-server:8.0
+    container_name: node3
+    hostname: node3
+    ports:
+      - "3309:3306"
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+    command: ["mysqld",
+      "--server-id=1",
+      "--log-bin=mysql-bin-1.log",
+      "--enforce-gtid-consistency=ON",
+      "--log-slave-updates=ON",
+      "--gtid-mode=ON",
+      "--transaction-write-set-extraction=XXHASH64",
+      "--binlog-checksum=NONE",
+      "--master-info-repository=TABLE",
+      "--relay-log-info-repository=TABLE",
+      "--plugin-load=group_replication.so",
+      "--relay-log-recovery=ON",
+      "--group-replication-start-on-boot=OFF",
+      "--group-replication-group-name=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "--group-replication-local-address=node3:6606",
+      "--group-replication-group-seeds=node1:6606,node2:6606,node3:6606",
+      "--loose-group-replication-single-primary-mode=ON",
+      "--loose-group-replication-enforce-update-everywhere-checks=OFF"]
+    healthcheck:
+      test: "mysqladmin ping -u root -p$${MYSQL_ROOT_PASSWORD}"
+      interval: 2s
+      retries: 20
+
