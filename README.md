@@ -11,7 +11,7 @@ After clonning the project, run the following command:
 ```
 docker-compose up -d
 ```
-Wait for the State ```Up (healthy)``` in all 3 containers.
+Wait for the State `Up (healthy)` in all 3 containers.
 ```
 docker-compose ps
 ```
@@ -25,7 +25,7 @@ node3   /entrypoint.sh mysqld --se ...   Up (healthy)   0.0.0.0:3309->3306/tcp, 
 ```
 
 ## Step 2: Bootstrap the group
-Run the command below so node1 will bootstrap the group:
+Run the command below so **node1** will bootstrap the group:
 ```
 docker-compose exec node1 mysql -uroot -pmypass \
   -e "SET @@GLOBAL.group_replication_bootstrap_group=1;" \
@@ -46,7 +46,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 | group_replication_applier | da26f305-19c5-11e9-a728-0242ac1e0002 | node1       |        3306 | RECOVERING   | SECONDARY   | 8.0.13         |
 +---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+
 ```
-*MEMBER_STATE* should appear on *RECOVERING* or *ONLINE* state after some seconds.
+`MEMBER_STATE` should appear on `RECOVERING` or `ONLINE` state after some seconds.
 
 ## Step 3: Join other nodes to group
 Execute the command below to configure the other nodes and join the to group:
@@ -112,7 +112,4 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 ```
 
 ## Step 5: Clean up
-Execute where docker-compose.yml file is located:
-```
-docker-compose down
-```
+Run `docker-compose down` in the same path where docker-compose.yml file is located.
