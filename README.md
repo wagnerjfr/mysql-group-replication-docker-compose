@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wagnerjfr/mysql-group-replication-docker-compose.svg?branch=master)](https://travis-ci.org/wagnerjfr/mysql-group-replication-docker-compose)
+
 # Seeting up MySQL Group replication with Docker Compose
 
 The below steps show how to setup [MySQL Group Replication](https://dev.mysql.com/doc/en/group-replication.html) with [Docker Compose](https://docs.docker.com/compose/) using [mysql/mysql-server:8.0](https://hub.docker.com/r/mysql/mysql-server) Docker images.
