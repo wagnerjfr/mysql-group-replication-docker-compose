@@ -8,7 +8,7 @@ Other ways to setup Group Replication using Docker containers:
 - https://github.com/wagnerjfr/mysql-group-replication-docker
 - https://github.com/wagnerjfr/mysql-group-replication-binaries-docker
 
-## Step 1: Starting the containers
+### Step 1: Starting the containers
 After clonning the project, run the following command:
 ```
 docker-compose up -d
@@ -26,7 +26,7 @@ node2   /entrypoint.sh mysqld --se ...   Up (healthy)   0.0.0.0:3308->3306/tcp, 
 node3   /entrypoint.sh mysqld --se ...   Up (healthy)   0.0.0.0:3309->3306/tcp, 33060/tcp
 ```
 
-## Step 2: Bootstrap the group
+### Step 2: Bootstrap the group
 Run the command below so **node1** will bootstrap the group:
 ```
 docker-compose exec node1 mysql -uroot -pmypass \
@@ -50,7 +50,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 ```
 `MEMBER_STATE` should appear on `RECOVERING` or `ONLINE` state after some seconds.
 
-## Step 3: Join other nodes to group
+### Step 3: Join other nodes to group
 Execute the command below to configure the other nodes and join the to group:
 ```
 for N in 2 3
@@ -60,7 +60,7 @@ do docker-compose exec node$N mysql -uroot -pmypass \
 done
 ```
 
-## Step 4: Check the group
+### Step 4: Check the group
 Execute:
 ```
 for N in 1 2 3
@@ -113,5 +113,5 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 +---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+
 ```
 
-## Step 5: Clean up
+### Step 5: Clean up
 Run `docker-compose down` in the same path where docker-compose.yml file is located.
