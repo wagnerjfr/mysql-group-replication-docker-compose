@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wagnerjfr/mysql-group-replication-docker-compose.svg?branch=master)](https://travis-ci.org/wagnerjfr/mysql-group-replication-docker-compose)
+[![Build Status](https://travis-ci.com/wagnerjfr/mysql-group-replication-docker-compose.svg?branch=master)](https://travis-ci.com/wagnerjfr/mysql-group-replication-docker-compose)
 
 # Seeting up MySQL Group replication with Docker Compose
 
