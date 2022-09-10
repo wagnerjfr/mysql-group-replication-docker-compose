@@ -8,6 +8,7 @@ script:
   - docker-compose ps
   - docker logs node1
   - bash ./travis-ci/create_gr.sh
+  - sleep 30
   - bash ./travis-ci/test_gr.sh
 after_script:
   - docker-compose down
