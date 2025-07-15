@@ -1,9 +1,7 @@
-version: '3.5'
-
 services:
 
   node1:
-    image: mysql:8.0
+    image: mysql:8.4
     container_name: node1
     hostname: node1
     ports:
@@ -15,12 +13,9 @@ services:
       "--server-id=1",
       "--log-bin=mysql-bin-1.log",
       "--enforce-gtid-consistency=ON",
-      "--log-slave-updates=ON",
+      "--log-replica-updates=ON",
       "--gtid-mode=ON",
-      "--transaction-write-set-extraction=XXHASH64",
       "--binlog-checksum=NONE",
-      "--master-info-repository=TABLE",
-      "--relay-log-info-repository=TABLE",
       "--plugin-load=group_replication.so",
       "--relay-log-recovery=ON",
       "--loose-group-replication-start-on-boot=OFF",
@@ -35,7 +30,7 @@ services:
       retries: 20
 
   node2:
-    image: mysql:8.0
+    image: mysql:8.4
     container_name: node2
     hostname: node2
     ports:
@@ -47,12 +42,9 @@ services:
       "--server-id=1",
       "--log-bin=mysql-bin-1.log",
       "--enforce-gtid-consistency=ON",
-      "--log-slave-updates=ON",
+      "--log-replica-updates=ON",
       "--gtid-mode=ON",
-      "--transaction-write-set-extraction=XXHASH64",
       "--binlog-checksum=NONE",
-      "--master-info-repository=TABLE",
-      "--relay-log-info-repository=TABLE",
       "--plugin-load=group_replication.so",
       "--relay-log-recovery=ON",
       "--loose-group-replication-start-on-boot=OFF",
@@ -67,7 +59,7 @@ services:
       retries: 20
 
   node3:
-    image: mysql:8.0
+    image: mysql:8.4
     container_name: node3
     hostname: node3
     ports:
@@ -79,12 +71,9 @@ services:
       "--server-id=1",
       "--log-bin=mysql-bin-1.log",
       "--enforce-gtid-consistency=ON",
-      "--log-slave-updates=ON",
+      "--log-replica-updates=ON",
       "--gtid-mode=ON",
-      "--transaction-write-set-extraction=XXHASH64",
       "--binlog-checksum=NONE",
-      "--master-info-repository=TABLE",
-      "--relay-log-info-repository=TABLE",
       "--plugin-load=group_replication.so",
       "--relay-log-recovery=ON",
       "--loose-group-replication-start-on-boot=OFF",

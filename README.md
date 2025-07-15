@@ -6,3 +6,10 @@ The below steps show how to setup [MySQL Group Replication](https://dev.mysql.co
 ### [Setting up MySQL Group replication with Docker Compose](https://medium.com/gitconnected/setting-up-mysql-group-replication-with-docker-compose-7639347545a2)
 
 ***P.S.** Take a look at this [tutorial](https://medium.com/@wagnerjfr/setting-up-mysql-group-replication-with-mysql-docker-images-f5eedd44fa2b) and check how to setup MySQL Group Replication with Docker containers.*
+
+## Simple usage
+
+```
+$ docker compose up                         # start latest 8.0 GR cluster
+$ docker compose -f docker-compose84.yml up # start latest 8.4 GR cluster
+```
