@@ -10,6 +10,8 @@ The below steps show how to setup [MySQL Group Replication](https://dev.mysql.co
 ## Simple usage
 
 ```
-$ docker compose up                         # start latest 8.0 GR cluster
-$ docker compose -f docker-compose84.yml up # start latest 8.4 GR cluster
+$ docker compose up                           # start 8.0 GR cluster (using latest version available)
+$ docker compose down                         # stop 8.0 GR cluster
+$ docker compose -f docker-compose84.yml up   # start 8.4 GR cluster (using latest version available)
+$ docker compose -f docker-compose84.yml down # stop 8.4 GR cluster
 ```
