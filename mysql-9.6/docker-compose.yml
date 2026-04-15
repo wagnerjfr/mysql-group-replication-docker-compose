@@ -1,0 +1,114 @@
+x-mysql-gr-common: &mysql-gr-common
+  image: mysql:9.6
+  restart: unless-stopped
+  environment:
+    - MYSQL_ROOT_PASSWORD=mypass
+  command:
+    - mysqld
+    - --enforce-gtid-consistency=ON
+    - --gtid-mode=ON
+    - --log-replica-updates=ON
+    - --binlog-format=ROW
+    - --binlog-checksum=NONE
+    - --loose-plugin-load-add=group_replication.so
+    - --relay-log-recovery=ON
+    - --loose-group-replication-start-on-boot=OFF
+    - --loose-group-replication-group-name=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+    - --loose-group-replication-group-seeds=node1:6606,node2:6606,node3:6606
+    - --loose-group-replication-single-primary-mode=ON
+    - --loose-group-replication-enforce-update-everywhere-checks=OFF
+  healthcheck:
+    test: "mysqladmin ping -uroot -p$${MYSQL_ROOT_PASSWORD}"
+    interval: 2s
+    timeout: 5s
+    retries: 20
+  networks:
+    - mysql-gr-net
+
+services:
+  node1:
+    <<: *mysql-gr-common
+    container_name: node1
+    hostname: node1
+    ports:
+      - "3307:3306"
+    command:
+      - mysqld
+      - --server-id=1
+      - --log-bin=mysql-bin-1.log
+      - --enforce-gtid-consistency=ON
+      - --gtid-mode=ON
+      - --log-replica-updates=ON
+      - --binlog-format=ROW
+      - --binlog-checksum=NONE
+      - --loose-plugin-load-add=group_replication.so
+      - --relay-log-recovery=ON
+      - --loose-group-replication-start-on-boot=OFF
+      - --loose-group-replication-group-name=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+      - --loose-group-replication-local-address=node1:6606
+      - --loose-group-replication-group-seeds=node1:6606,node2:6606,node3:6606
+      - --loose-group-replication-single-primary-mode=ON
+      - --loose-group-replication-enforce-update-everywhere-checks=OFF
+    volumes:
+      - node1_data:/var/lib/mysql
+
+  node2:
+    <<: *mysql-gr-common
+    container_name: node2
+    hostname: node2
+    ports:
+      - "3308:3306"
+    command:
+      - mysqld
+      - --server-id=2
+      - --log-bin=mysql-bin-2.log
+      - --enforce-gtid-consistency=ON
+      - --gtid-mode=ON
+      - --log-replica-updates=ON
+      - --binlog-format=ROW
+      - --binlog-checksum=NONE
+      - --loose-plugin-load-add=group_replication.so
+      - --relay-log-recovery=ON
+      - --loose-group-replication-start-on-boot=OFF
+      - --loose-group-replication-group-name=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+      - --loose-group-replication-local-address=node2:6606
+      - --loose-group-replication-group-seeds=node1:6606,node2:6606,node3:6606
+      - --loose-group-replication-single-primary-mode=ON
+      - --loose-group-replication-enforce-update-everywhere-checks=OFF
+    volumes:
+      - node2_data:/var/lib/mysql
+
+  node3:
+    <<: *mysql-gr-common
+    container_name: node3
+    hostname: node3
+    ports:
+      - "3309:3306"
+    command:
+      - mysqld
+      - --server-id=3
+      - --log-bin=mysql-bin-3.log
+      - --enforce-gtid-consistency=ON
+      - --gtid-mode=ON
+      - --log-replica-updates=ON
+      - --binlog-format=ROW
+      - --binlog-checksum=NONE
+      - --loose-plugin-load-add=group_replication.so
+      - --relay-log-recovery=ON
+      - --loose-group-replication-start-on-boot=OFF
+      - --loose-group-replication-group-name=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+      - --loose-group-replication-local-address=node3:6606
+      - --loose-group-replication-group-seeds=node1:6606,node2:6606,node3:6606
+      - --loose-group-replication-single-primary-mode=ON
+      - --loose-group-replication-enforce-update-everywhere-checks=OFF
+    volumes:
+      - node3_data:/var/lib/mysql
+
+volumes:
+  node1_data:
+  node2_data:
+  node3_data:
+
+networks:
+  mysql-gr-net:
+    driver: bridge
