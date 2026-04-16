@@ -9,6 +9,6 @@ This repository now provides two separate Docker Compose setups:
 ### [Setting up MySQL Group replication with Docker Compose](https://medium.com/gitconnected/setting-up-mysql-group-replication-with-docker-compose-7639347545a2)
 
 ## Full article MySQL 9.6
-### [Build a MySQL 9.6 Group Replication Cluster with Docker Compose](https://medium.com/gitconnected/setting-up-mysql-group-replication-with-docker-compose-7639347545a2)
+### [Build a MySQL 9.6 Group Replication Cluster with Docker Compose](https://medium.com/itnext/build-a-mysql-9-6-group-replication-cluster-with-docker-compose-7badd985118f)
 
 ***P.S.** Take a look at this [tutorial](https://medium.com/@wagnerjfr/setting-up-mysql-group-replication-with-mysql-docker-images-f5eedd44fa2b) and check how to setup MySQL Group Replication with Docker containers.*
